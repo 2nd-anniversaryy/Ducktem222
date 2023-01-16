@@ -4,11 +4,11 @@
         <section class="header-wrap">
             <section class="menu">
                 <nav class="menu-bar">
-                    <label class="burger-icon" for="burger-check">
+                    <label @click="sideBarOpen()" class="burger-icon" for="burger-check">
                         <span class="burger-sticks"></span>
                     </label>
 
-                    <div class="menu-bar-category">
+                    <div class="menu-bar-category active" v-if="sideBarWrap == true">
                         <div class="category-login">
                             <a href="">로그인/회원가입</a>
                         </div>
@@ -56,16 +56,15 @@
             </div>
 
             <div class="header-icon">
-                <img class="search-icon" src="/image/icon/search.svg" alt="검색">
-                <img class="alarm-icon" src="/image/icon/bell.svg" alt="알람">
+                <img class="search-icon" src="/image/icon/search.svg" alt="검색" @click="searchBarOpen()">
+                <img class="alarm-icon" src="/image/icon/bell.svg" alt="알람" @click="alarmWrapOpen()">
                 <img class="chat-icon" src="/image/icon/icon-message.svg" alt="채팅">
             </div>
-
 
         </section>
 
         <!-- 검색 창 -->
-        <section class="d-none search-wrap">
+        <section class="search-wrap" v-if="searchBarWrap == true">
 
             <div class="search-input-wrap">
                 <img class="search-input-back" src="/image/icon/icon-right.svg" alt="뒤로가기">
@@ -92,11 +91,11 @@
         </section>
 
         <!-- 알람 창 -->
-        <section class="d-none alarm-container">
+        <section class="alarm-container" v-if="alarmWrap == true">
             <div class="alarm-title-wrap">
                 <h1>알림</h1>
                 <div>
-                    <img src="/image/icon/icon-close.svg" class="alarm-close">
+                    <img src="/image/icon/icon-close.svg" class="alarm-close" @click="alarmWrapOpen()">
                 </div>
             </div>
             <hr>
@@ -159,7 +158,45 @@
 
 <script>
 export default {
+    data() {
+        return {
+            sideBarWrap: false,
+            searchBarWrap: false,
+            alarmWrap: false
+        };
+    },
+    methods: {
+        // side bar
+        sideBarOpen() {
+            if (!this.sideBarWrap) {
+                this.sideBarWrap = true;
+            }
+            else if (this.sideBarWrap) {
+                this.sideBarWrap = false;
+            }
+        },
 
+        searchBarOpen() {
+            if (!this.searchBarWrap) {
+                this.sideBarWrap = false;
+                this.alarmWrap = false;
+                this.searchBarWrap = true;
+            }
+            else if (this.searchBarWrap) {
+                this.searchBarWrap = false;
+            }
+        },
+        alarmWrapOpen() {
+            if (!this.alarmWrap) {
+                this.sideBarWrap = false;
+                this.searchBarWrap = false;
+                this.alarmWrap = true;
+            }
+            else if (this.alarmWrap) {
+                this.alarmWrap = false;
+            }
+        }
+    }
 }
 </script>
 

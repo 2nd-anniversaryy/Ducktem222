@@ -48,6 +48,7 @@ header {
 
 .header-icon img {
     padding-right: 10px;
+    cursor: pointer;
 }
 
 @media(min-width: 768px) {
@@ -275,10 +276,6 @@ header {
     -webkit-mask-repeat: no-repeat;
     -webkit-mask-size: 20px 20px;
     background-color: var(--color-dark);
-}
-
-.menu-extra ul {
-    /* margin-top: 60px; */
 }
 
 .menu-extra li {
